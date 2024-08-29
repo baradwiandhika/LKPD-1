@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Date</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  p {
+    font-size: 18px;
+    color: #333;
+  }
+</style>
+</head> 
+<body>
+
+<form id="form1">
+  <input type="date" id="search-input">
+  <input type="submit" value="Submit">
+  <p id="result">tidak mencari data</p>
+</form>
+
+<script>
+  document.getElementById('form1').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let inputValue = document.getElementById('search-input').value;
+    if (inputValue === "") {
+      document.getElementById('result').innerHTML = "Tidak mencari data...";
+    } else {
+      let date = new Date(inputValue);
+      let options = { day: 'numeric', month: 'long', year: 'numeric' };
+      let formattedDate = date.toLocaleDateString('id-ID', options);
+      document.getElementById('result').innerHTML = "Mencari data untuk tanggal " + formattedDate + "...";
+    }
+  });
+</script>
+
+</body>
+</html>

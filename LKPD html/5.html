@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h3{
+            position: relative;
+            bottom: 80px;
+            left: 17px;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            align-items: center;
+            right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Hitung Mundur</h3>
+    <div class="container">
+        <p>
+            <span id="timer">10</span>
+        </p>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+    </div>
+
+    <script>
+        const timerSpan = document.querySelector('#timer');
+        let timerInterval;
+        let timeLeft = 10;
+
+        function countdown(seconds) {
+            timerInterval = setInterval(function() {
+                if (seconds >= 1) {
+                    timerSpan.innerText = seconds--;
+                    timeLeft = seconds;
+                } else {
+                    clearInterval(timerInterval);
+                    timerSpan.innerText = "Waktu habis";
+                    timeLeft = 10;
+                }
+            }, 1000);
+        }
+
+        document.getElementById('startBtn').addEventListener('click', function() {
+            clearInterval(timerInterval);
+            countdown(timeLeft);
+        });
+
+        document.getElementById('stopBtn').addEventListener('click', function() {
+            clearInterval(timerInterval);
+        });
+
+    </script>
+</body>
+
+</html>

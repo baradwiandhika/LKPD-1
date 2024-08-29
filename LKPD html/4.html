@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #preview {
+            border: 4px solid white;
+            display: block;
+            width: 200px;
+            height: 200px;
+            row-gap: 15em;
+        }
+
+        .container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .kotak {
+            border-radius: 0;
+            clip-path: none;
+        }
+
+        .lingkaran {
+            border-radius: 50%;
+            clip-path: none;
+        }
+
+        .segitiga {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="container">
+            <div class="img">
+                <label for="image">Ubah :</label>
+                <select name="image" id="image" onchange="changeImage(this)">
+                    <option disabled hidden selected>Pilih Gambar</option>
+                    <option value="/LKPD/img/bunga.jpeg">Bunga</option>
+                    <option value="/LKPD/img/dauun.jpg">Daun</option>
+                    <option value="/LKPD/img/pemandangan.jpg">Pemandangan</option>
+                </select>
+            </div>
+            <div class="bentuk">
+                <select name="border" id="border" onchange="changeShape(this)">
+                    <option disabled hidden selected>Pilih Bentuk</option>
+                    <option value="kotak">Kotak</option>
+                    <option value="lingkaran">Lingkaran</option>
+                    <option value="segitiga">Segitiga</option>
+                </select>
+            </div>
+            <div class="color">
+                <select name="color" id="color" onchange="changeColor(this)">
+                    <option disabled hidden selected>Pilih Warna Border</option>
+                    <option value="red">Merah</option>
+                    <option value="yellow">Kuning</option>
+                    <option value="green">Hijau</option>
+                    <option value="pink">Pink</option>
+                    <option value="purple">Ungu</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <img id="preview" src="/LKPD/img/dauun.jpg" alt="Gambar Pilihan">
+
+    <script>
+        function changeImage(e) {
+            const preview = document.getElementById('preview');
+            const selectedValue = e.value;
+
+            preview.src = selectedValue;
+        }
+
+        function changeShape(s) {
+            const preview = document.getElementById('preview');
+            const shape = s.value;
+
+            preview.classList.remove('kotak', 'lingkaran', 'segitiga');
+
+            if (shape === 'kotak') {
+                preview.classList.add('kotak');
+            } else if (shape === 'lingkaran') {
+                preview.classList.add('lingkaran');
+            } else if (shape === 'segitiga') {
+                preview.classList.add('segitiga');
+            }
+        }
+
+        function changeColor(c) {
+            const preview = document.getElementById('preview');
+            const selectedColor = c.value;
+
+            preview.style.borderColor = selectedColor;
+        }
+    </script>
+
+</body>
+
+</html>
